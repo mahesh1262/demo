@@ -27,7 +27,7 @@ public class PatientController {
 	PatientService patientservice;
 
 	@GetMapping("/patients")
-	public ResponseEntity<List<Patient>> getAllTutorials() {
+	public ResponseEntity<List<Patient>> getAllPatients() {
 		try {
 			List<Patient> patients = patientservice.getAllPatient();
 			return new ResponseEntity<>(patients, HttpStatus.OK);
@@ -37,7 +37,7 @@ public class PatientController {
 	}
 
 	@GetMapping("/patients/{id}")
-	public ResponseEntity<Patient> getTutorialById(@PathVariable("id") long id) {
+	public ResponseEntity<Patient> getPatientById(@PathVariable("id") long id) {
 		Optional<Patient> patient = patientservice.findById(id);
 
 		if (patient.isPresent()) {
@@ -58,7 +58,7 @@ public class PatientController {
 	}
 
 	@PutMapping("/patients/{id}")
-	public ResponseEntity<Patient> updateTutorial(@PathVariable("id") long id, @RequestBody PatientDto patientDto) {
+	public ResponseEntity<Patient> updatePatient(@PathVariable("id") long id, @RequestBody PatientDto patientDto) {
 		Optional<Patient> patient = patientservice.findById(id);
 		if (patient.isPresent()) {
 			return new ResponseEntity<>(patientservice.updatePatient(patientDto, id), HttpStatus.OK);
@@ -78,7 +78,7 @@ public class PatientController {
 	}
 
 	@DeleteMapping("/patients")
-	public ResponseEntity<HttpStatus> deleteAllTutorials() {
+	public ResponseEntity<HttpStatus> deleteAllPatients() {
 		try {
 			patientservice.deleteAllPatients();
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
