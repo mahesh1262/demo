@@ -67,6 +67,12 @@ public class PatientserviceImpl implements PatientService {
 	public void deleteAllPatients() {
 		patientRepository.deleteAll();		
 	}
+
+	@Override
+	public List<Patient> findByName(String name) {
+		return patientRepository.findByNameContaining(name);
+		 
+	}
 	
 	
 

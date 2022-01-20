@@ -87,5 +87,17 @@ public class PatientController {
 		}
 
 	}
+	
+	@GetMapping("/patientsby/{name}")
+	public ResponseEntity<List<Patient>> getPatientByName(@PathVariable("name") String name) {
+		
+		try {
+			List<Patient> patients = patientservice.findByName(name);
+			return new ResponseEntity<>(patients, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
 
 }
